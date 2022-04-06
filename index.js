@@ -1,4 +1,5 @@
 const express = require("express");
+const { json } = require("express/lib/response");
 const app = express();
 const port = 3000;
 
@@ -19,19 +20,28 @@ const cars = [
   },
 ];
 
-app.use("/", (req, res, next) => {
-  console.log("api visited");
-  next();
+app.get("/", (req, res) => {
+  res.status(200).json(cars);
 });
 
-app.get("/api/cars", (req, res) => {
-  res.json(cars);
-});
-
-app.post("/api/cars", (req, res) => {
+app.post("/", (req, res) => {
   console.log(req.body);
   cars.push(req.body);
   res.status(201).send("Car added!");
+});
+
+app.put("/", (req, res) => {
+  res.send("Put Request");
+});
+
+app.delete("/:id", (req, res) => {
+  const { id } = req.params;
+
+  const deleted = cars.find(id);
+
+  cars.find();
+
+  res.send("delete request");
 });
 
 app.listen(port, () => {

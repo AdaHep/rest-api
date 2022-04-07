@@ -1,24 +1,13 @@
 const express = require("express");
-const { json } = require("express/lib/response");
 const app = express();
 const port = 3000;
+const fs = require("fs");
+
+const carFile = "./cars.json";
+
+const cars = require(carFile);
 
 app.use(express.json());
-
-const cars = [
-  {
-    id: getNewId(),
-    brand: "BMW",
-    modelname: "320",
-    color: "Grey",
-  },
-  {
-    id: getNewId(),
-    brand: "Mercedes-benz",
-    modelname: "C63",
-    color: "White",
-  },
-];
 
 function getNewId() {
   return Math.floor((1 + Math.random()) * 0x10000)
@@ -27,35 +16,68 @@ function getNewId() {
 }
 
 app.get("/", (req, res) => {
+  if (!cars) return res.status(404).send("No data found");
   res.status(200).json(cars);
 });
 
 app.post("/", (req, res) => {
+  let newCarList = cars;
   console.log(req.body);
   let newCar = req.body;
-
-  cars.push(newCar);
+  newCar.id = getNewId();
+  newCarList.push(newCar);
+  // cars.push(newCar);
+  fs.writeFile(
+    carFile,
+    JSON.stringify(newCarList, null, 2),
+    function handleError(err) {
+      if (err) console.log(err);
+      console.log("Ändrar filen");
+    }
+  );
   res.status(201).send("Car added!");
 });
 
-app.put("/", (req, res) => {
-  const updatedCars = cars.map((car) => {
-    if (car.id === 1) {
-      return { brand: "Audi", modelName: "S5", color: "blue", id: "" };
-    }
+app.put("/:carID", (req, res) => {
+  let id = req.params.carID;
+  let foundCar = cars.find((car) => car.id === id);
 
+  if (!foundCar) res.status(404).send("car not found");
+
+  let updatedCars = cars.map((car) => {
+    if (car.id === id) {
+      car = { id: car.id, brand: "Audi", modelName: "S5", color: "blue" };
+      return car;
+    }
     return car;
   });
+
+  fs.writeFile(
+    carFile,
+    JSON.stringify(updatedCars, null, 2),
+    function handleError(err) {
+      if (err) console.log(err);
+      console.log("Uppdaterar filen");
+    }
+  );
   res.send(updatedCars);
 });
 
-app.delete("/", (req, res) => {
-  const carToRemove = "";
-  const findID = cars.find((car) => carToRemove === cars.id);
-  if (findID === carToRemove) {
-    cars.splice(findID, 1);
-  }
+app.delete("/:carID", (req, res) => {
+  let id = req.params.carID;
+  let foundCar = cars.find((car) => car.id === id);
 
+  if (!foundCar) res.status(404).send("car not found");
+
+  let updatedCars = cars.filter((car) => car.id !== id);
+  fs.writeFile(
+    carFile,
+    JSON.stringify(updatedCars, null, 2),
+    function handleError(err) {
+      if (err) console.log(err);
+      console.log("Uppdaterar filen och tar bort valt objekt");
+    }
+  );
   res.send("Delete request");
 });
 

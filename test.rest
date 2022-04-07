@@ -7,7 +7,7 @@ GET http://localhost:3000/
 POST http://localhost:3000/
 Content-Type: application/json
 
-// Fyll i önskad information innan du skickar request
+// Fyll i önskad information innan du skickar request. ID genereras automatiskt
 {
     "id": "",
     "brand": "Prutt och fis",
@@ -18,8 +18,8 @@ Content-Type: application/json
 ###
 
 //// ändra idt efter 3000/ för att välja vilket object du redigerar.
-PUT http://localhost:3000/fis
+PUT http://localhost:3000/XXXXX
 
 ###
 //// Ändra id:t efter 3000/ för att välja vilket objekt du vill ta bort
-DELETE http://localhost:3000/fis
+DELETE http://localhost:3000/XXXXX

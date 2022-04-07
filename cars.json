@@ -1,26 +1,14 @@
 [
   {
-    "id": "etete",
+    "id": "abc123",
     "brand": "BMW",
     "modelname": "320",
     "color": "Grey"
   },
   {
-    "id": "84d0",
-    "brand": "Prutt och fis",
-    "modelname": "V90",
-    "color": "Red"
-  },
-  {
-    "id": "3072",
-    "brand": "Prutt och fis",
-    "modelname": "V90",
-    "color": "Red"
-  },
-  {
-    "id": "e35a",
-    "brand": "Prutt och fis",
-    "modelname": "V90",
-    "color": "Red"
+    "id": "cba321",
+    "brand": "Mercedes benz",
+    "modelname": "C63",
+    "color": "White"
   }
 ]

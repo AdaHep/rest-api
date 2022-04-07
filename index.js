@@ -1,13 +1,11 @@
 const express = require("express");
 const app = express();
+app.use(express.json());
 const port = 3000;
 const fs = require("fs");
 
 const carFile = "./cars.json";
-
 const cars = require(carFile);
-
-app.use(express.json());
 
 function getNewId() {
   return Math.floor((1 + Math.random()) * 0x10000)
@@ -26,7 +24,7 @@ app.post("/", (req, res) => {
   let newCar = req.body;
   newCar.id = getNewId();
   newCarList.push(newCar);
-  // cars.push(newCar);
+
   fs.writeFile(
     carFile,
     JSON.stringify(newCarList, null, 2),
@@ -42,10 +40,11 @@ app.put("/:carID", (req, res) => {
   let id = req.params.carID;
   let foundCar = cars.find((car) => car.id === id);
 
-  if (!foundCar) res.status(404).send("car not found");
+  if (!foundCar) res.status(404).send("Car not found");
 
   let updatedCars = cars.map((car) => {
     if (car.id === id) {
+      // Redigera informationen i car-objektet för att välja ny.
       car = { id: car.id, brand: "Audi", modelName: "S5", color: "blue" };
       return car;
     }
@@ -67,7 +66,7 @@ app.delete("/:carID", (req, res) => {
   let id = req.params.carID;
   let foundCar = cars.find((car) => car.id === id);
 
-  if (!foundCar) res.status(404).send("car not found");
+  if (!foundCar) res.status(404).send("Car not found");
 
   let updatedCars = cars.filter((car) => car.id !== id);
   fs.writeFile(
@@ -78,7 +77,7 @@ app.delete("/:carID", (req, res) => {
       console.log("Uppdaterar filen och tar bort valt objekt");
     }
   );
-  res.send("Delete request");
+  res.send("Delete förfrågan mottagen");
 });
 
 app.listen(port, () => {

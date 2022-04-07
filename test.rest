@@ -9,8 +9,7 @@ Content-Type: application/json
 
 // Fyll i önskad information innan du skickar request
 {
-    "id": 2,
-    "brand": "asdasdasdasd",
+    "brand": "Prutt och fis",
     "modelname": "V90",
     "color": "Red"
 

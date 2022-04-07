@@ -23,6 +23,6 @@ ID for the new object will be auto-generated.
 
 To change the information about an object. First go to index.js line >49< and type in the new information. Then you can send the PUT-request from test.rest file.
 
-#### Delete
+#### DELETE
 
 To delete an object, go to the test.rest file. Scroll down to DELETE. Then replace the X's in the address with the ID of the item you want to delete.

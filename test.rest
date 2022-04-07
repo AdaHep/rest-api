@@ -1,25 +1,24 @@
 
-/// Hämta information
+/// Get objects in cars.json file
 GET http://localhost:3000/
 
 ###
 
 POST http://localhost:3000/
 Content-Type: application/json
-
-// Fyll i önskad information innan du skickar request. ID genereras automatiskt
+// Enter information about the new object before sending request. 
+//ID will be auto-generated so leave it empty. 
 {
     "id": "",
-    "brand": "Prutt och fis",
-    "modelname": "V90",
-    "color": "Red"
+    "brand": "XXXX",
+    "modelname": "XXXX",
+    "color": "XXXX"
 }
 
 ###
-
-//// ändra idt efter 3000/ för att välja vilket object du redigerar.
-PUT http://localhost:3000/XXXXX
+// Change the X's in the address to the ID of the object you want to update. 
+PUT http://localhost:3000/XXXX
 
 ###
-//// Ändra id:t efter 3000/ för att välja vilket objekt du vill ta bort
-DELETE http://localhost:3000/XXXXX
+// Change the X's in the address to the ID of the object you want to delete. 
+DELETE http://localhost:3000/XXXX

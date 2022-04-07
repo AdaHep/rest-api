@@ -30,7 +30,7 @@ app.post("/", (req, res) => {
     JSON.stringify(newCarList, null, 2),
     function handleError(err) {
       if (err) console.log(err);
-      console.log("Ändrar filen");
+      console.log("Changing file");
     }
   );
   res.status(201).send("Car added!");
@@ -44,8 +44,9 @@ app.put("/:carID", (req, res) => {
 
   let updatedCars = cars.map((car) => {
     if (car.id === id) {
-      // Redigera informationen i car-objektet för att välja ny.
-      car = { id: car.id, brand: "Audi", modelName: "S5", color: "blue" };
+      // Edit the information in the car object before sending PUT-request.
+      // ID can be changed but is not recomended.
+      car = { id: car.id, brand: "XXXX", modelName: "XXXX", color: "XXXX" };
       return car;
     }
     return car;
@@ -59,7 +60,7 @@ app.put("/:carID", (req, res) => {
       console.log("Uppdaterar filen");
     }
   );
-  res.send(updatedCars);
+  res.status(202).send(updatedCars);
 });
 
 app.delete("/:carID", (req, res) => {
@@ -77,7 +78,7 @@ app.delete("/:carID", (req, res) => {
       console.log("Uppdaterar filen och tar bort valt objekt");
     }
   );
-  res.send("Delete förfrågan mottagen");
+  res.status(201).send("Delete request complete");
 });
 
 app.listen(port, () => {

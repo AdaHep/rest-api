@@ -44,10 +44,7 @@ app.put("/:carID", (req, res) => {
 
   let updatedCars = cars.map((car) => {
     if (car.id === id) {
-      // Edit the information in the car object before sending PUT-request.
-      // ID can be changed but is not recomended.
-      car = { id: car.id, brand: "XXXX", modelName: "XXXX", color: "XXXX" };
-      return car;
+      return req.body;
     }
     return car;
   });
@@ -60,7 +57,7 @@ app.put("/:carID", (req, res) => {
       console.log("Uppdaterar filen");
     }
   );
-  res.status(202).send(updatedCars);
+  res.status(200).send(`Car with ${id} updated`);
 });
 
 app.delete("/:carID", (req, res) => {
@@ -78,7 +75,7 @@ app.delete("/:carID", (req, res) => {
       console.log("Uppdaterar filen och tar bort valt objekt");
     }
   );
-  res.status(201).send("Delete request complete");
+  res.status(200).send("Delete request complete");
 });
 
 app.listen(port, () => {

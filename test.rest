@@ -6,19 +6,27 @@ GET http://localhost:3000/
 
 POST http://localhost:3000/
 Content-Type: application/json
+
 // Enter information about the new object before sending request. 
-//ID will be auto-generated so leave it empty. 
+
 {
-    "id": "",
-    "brand": "XXXX",
-    "modelname": "XXXX",
-    "color": "XXXX"
+    "brand": "Räserbil",
+    "modelname": "Supersnabb",
+    "color": "Black"
 }
 
 ###
-// Change the X's in the address to the ID of the object you want to update. 
-PUT http://localhost:3000/XXXX
+// Enter ID of the item on line 20 & 24. Then enter the new (updated) information before sending request. 
+PUT http://localhost:3000/abc123
+Content-Type: application/json
+
+{
+    "id": "abc123",
+    "brand": "apsdjasdklj",
+    "modelname": "asdasdasd",
+    "color": "XXasdasdasdasXX"
+}
 
 ###
-// Change the X's in the address to the ID of the object you want to delete. 
-DELETE http://localhost:3000/XXXX
+// Change the id (abc123) in the address to the ID of the object you want to delete. 
+DELETE http://localhost:3000/abc123

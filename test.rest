@@ -16,7 +16,9 @@ Content-Type: application/json
 }
 
 ###
-// Enter ID of the item on line 20 & 24. Then enter the new (updated) information before sending request. 
+
+//Change the id (abc123) to the id of the item you want to update 
+//before sending the request.
 PUT http://localhost:3000/abc123
 Content-Type: application/json
 
@@ -28,5 +30,5 @@ Content-Type: application/json
 }
 
 ###
-// Change the id (abc123) in the address to the ID of the object you want to delete. 
+// Change the id (abc123) to the ID of the object you want to delete. 
 DELETE http://localhost:3000/abc123
